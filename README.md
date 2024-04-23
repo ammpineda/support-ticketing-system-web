@@ -2,7 +2,7 @@
 
 A term-end project for the course Software Quality Laboratory (IT136L).
 
-<h1>TEAM MEMBERS</h1>
+<h2>TEAM MEMBERS</h2>
 <li>Abdurahman Azzouni</li>
 <li>Joshua Kyle Bondoc</li>
 <li>Friah Maxine Chua</li>
