@@ -32,18 +32,19 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 30px;
-            border: 2px solid #3A0000; 
+            border: 2px solid #3A0000;
             bottom:0;
         }
 
         .footer-logo img {
-            width: 400px; 
+            width: 400px;
         }
 
         .footer-pages {
-            flex: 1; 
+            flex: 1;
             display: flex;
-            justify-content: center; 
+            justify-content: center;
+            margin-left: 12%;
         }
 
         .footer-pages a {
@@ -65,7 +66,7 @@
     <div class="footer-pages">
         <p><b><i class="fas fa-phone-alt"></i></b> +63 2 2922 923</p>
     </div>
-    
+
 </div>
 
 </body>
