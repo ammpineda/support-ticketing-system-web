@@ -61,7 +61,7 @@
         <img src="{{ asset('images/logo.png') }}" alt="Logo">
     </div>
     <div class="footer-pages">
-        <p>© 2024 CounselCompanion - IT136L PROJECT FOPI01</p>
+        <p>© 2024 CounselCompanion (IT136L PROJECT)</p>
     </div>
     <div class="footer-pages">
         <p><b><i class="fas fa-phone-alt"></i></b> +63 2 2922 923</p>

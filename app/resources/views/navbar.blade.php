@@ -54,6 +54,36 @@
             border: 1px solid black;
         }
 
+        .profile-picture {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%; 
+            margin-left: 10px; 
+            border: 2px solid #3A0000;
+        }
+
+        .profile-details {
+            display: flex;
+            align-items: center; 
+        }
+
+        .profile-details span {
+            margin-right: 10px; 
+        }
+
+        .profile-details .logout-button {
+    display: none;
+}
+
+.profile-details:hover .logout-button {
+    display: inline-block;
+}
+
+.profile-details:hover span,
+.profile-details:hover img {
+    display: none;
+}
+
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
@@ -65,6 +95,8 @@
             }
         }
 
+        
+
         </style>
 
     </head>
@@ -75,15 +107,54 @@
             <img src="{{ asset('images/logo.png') }}" alt="Logo">
         </div>
         <div class="navbar-pages">
-            <a href="#">HOME</a>
+            <a href="{{route('home')}}">HOME</a>
             <a href="#">ABOUT</a>
             <a href="#">EVENTS</a>
         </div>
         <div class="navbar-buttons">
-            <a href="{{route('login')}}">LOGIN</a>
-            <a href="{{route('register')}}">REGISTER</a>
+            @if(session('is_student'))
+            <div class="profile-details">
+                <span>{{ session('first_name') }} {{ session('last_name') }}</span>
+                <img class="profile-picture" src="{{ asset('images/default_dp.jpg') }}" alt="Profile Picture">
+                <a href="" id="logout-btn" class="logout-button">LOGOUT</a>
+            </div>
+            @else
+                <a href="{{ route('login-page') }}">LOGIN</a>
+                <a href="{{ route('register-page') }}">REGISTER</a>
+            @endif
         </div>
+
     </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('logout-btn').addEventListener('click', function(event) {
+            event.preventDefault();
+            // Send AJAX request to clear sessions
+            fetch('{{ route("clear-sessions") }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Sessions cleared successfully, redirect to login page or any other page
+                    window.location.href = '{{ route("login-page") }}';
+                } else {
+                    // Handle error case
+                    console.error('Failed to clear sessions');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    });
+</script>
+
+
 
     </body>
 </html>

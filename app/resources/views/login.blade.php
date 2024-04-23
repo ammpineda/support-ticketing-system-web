@@ -44,6 +44,7 @@
 }
 
 .input-box input[type="text"],
+.input-box input[type="email"],
 .input-box input[type="password"] {
   width: calc(100% - 30px); /* Subtract the padding from the width */
   height: 50px;
@@ -56,6 +57,7 @@
 }
 
 .input-box input[type="text"]:focus,
+.input-box input[type="email"]:focus,
 .input-box input[type="password"]:focus {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
@@ -98,6 +100,26 @@
   display: inline-block; 
 }
 
+.alert-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid transparent;
+            border-radius: .25rem;
+        }
+
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid transparent;
+            border-radius: .25rem;
+        }
+
       @media screen and (max-width: 500px) {
         .form .column {
           flex-wrap: wrap;
@@ -110,21 +132,32 @@
     <section class="container">
       <h1>Welcome!</h1>
       <br />
-      <form action="#" class="form">
-        <div class="input-box">
-          <label>Email</label>
-          <input type="text" required />
-        </div>    
-        <div class="input-box">
-          <label>Password</label>
-          <input type="password" required />
-        </div>        
+
+      @if(session('success'))
+          <div class="alert alert-success">
+              {{ session('success') }}
           </div>
-        </div>
-        <br />
-        <br />
-        <button>Log In</button>
-      </form>
+      @endif
+
+      @if(session('error'))
+          <div class="alert alert-danger">
+              {{ session('error') }}
+          </div>
+      @endif
+      <form action="{{ route('login') }}" method="POST" class="form">
+    @csrf
+    <div class="input-box">
+        <label>Email</label>
+        <input type="email" name="email" required />
+    </div>    
+    <div class="input-box">
+        <label>Password</label>
+        <input type="password" name="password" required />
+    </div>
+    <br />
+    <br />
+    <button type="submit">Log In</button>
+</form>
     </section>
     @include('footer')
   </body>

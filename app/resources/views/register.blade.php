@@ -31,7 +31,7 @@
         text-align: center;
       }
       .container .form {
-        margin-top: 30px;
+        margin-top: 10px;
         
         margin-bottom: 30px;
       }
@@ -99,6 +99,26 @@
         background: #FCE4B4;
       }
 
+      .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid transparent;
+            border-radius: .25rem;
+        }
+
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid transparent;
+            border-radius: .25rem;
+        }
+
       @media screen and (max-width: 500px) {
         .form .column {
           flex-wrap: wrap;
@@ -111,7 +131,20 @@
     <section class="container">
       <h1>Welcome!</h1>
       <br />
-      <h4>Join us to access support.</h4>
+      <h4>Join us to access support.</h4><br>
+
+      @if(session('success'))
+          <div class="alert alert-success">
+              {{ session('success') }}
+          </div>
+      @endif
+
+      @if(session('error'))
+          <div class="alert alert-danger">
+              {{ session('error') }}
+          </div>
+      @endif
+
       <form action="{{route('register')}}" method="POST" class="form">
         @csrf
         <div class="column">
