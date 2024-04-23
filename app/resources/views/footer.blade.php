@@ -32,9 +32,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 30px;
-            border-top: 2px solid #3A0000; 
-            bottom: 0;
-            width: 100%;
+            border: 2px solid #3A0000; 
+            bottom:0;
         }
 
         .footer-logo img {
@@ -61,7 +60,7 @@
         <img src="{{ asset('images/logo.png') }}" alt="Logo">
     </div>
     <div class="footer-pages">
-        <p>© 2024 CouncelCompanion | IT136L PROJECT FOPI01</p>
+        <p>© 2024 CounselCompanion - IT136L PROJECT FOPI01</p>
     </div>
     <div class="footer-pages">
         <p><b><i class="fas fa-phone-alt"></i></b> +63 2 2922 923</p>

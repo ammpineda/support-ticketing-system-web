@@ -89,7 +89,6 @@
     </head>
     <body>
 
-
         @include('navbar')
 
         <div class="container">

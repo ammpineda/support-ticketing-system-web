@@ -80,7 +80,7 @@
             <a href="#">EVENTS</a>
         </div>
         <div class="navbar-buttons">
-            <a href="#">LOGIN</a>
+            <a href="{{route('login')}}">LOGIN</a>
             <a href="#">REGISTER</a>
         </div>
     </div>
