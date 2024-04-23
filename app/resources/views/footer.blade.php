@@ -48,7 +48,7 @@
 
         .footer-pages a {
             color: #3A0000;
-            margin-right: 10px;
+            margin-right: 50px;
             text-decoration: none;
         }
     </style>

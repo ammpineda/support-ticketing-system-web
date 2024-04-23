@@ -21,6 +21,7 @@
       }
 
       h1 {
+        margin-top: 100px;
         font-size: 50px;
         color: #333;
         font-weight: 500;
@@ -28,6 +29,7 @@
       }
       .container .form {
         margin-top: 30px;
+        margin-bottom:110px;
       }
       .form .input-box {
         width: 100%;
@@ -36,10 +38,32 @@
       .input-box label {
         color: #333;
       }
+      .input-box {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.input-box input[type="text"],
+.input-box input[type="password"] {
+  width: calc(100% - 30px); /* Subtract the padding from the width */
+  height: 50px;
+  outline: none;
+  font-size: 1rem;
+  color: #707070;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0 15px;
+}
+
+.input-box input[type="text"]:focus,
+.input-box input[type="password"]:focus {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
       .form :where(.input-box input) {
         position: relative;
         height: 50px;
-        width: 100%;
+        width: 700px;
         outline: none;
         font-size: 1rem;
         color: #707070;
@@ -56,17 +80,23 @@
         column-gap: 15px;
       }
 
-      .form button {
-        height: 55px;
-        width: 100%;
-        color: black;
-        font-size: 1rem;
-        font-weight: 400;
-        margin-top: 30px;
-        border: none;
-        cursor: pointer;
-        background: #FCE4B4;
-      }
+      .form {
+  margin-top: 30px;
+  margin-bottom: 110px;
+}
+
+.form button {
+  height: 55px;
+  width: 700px; 
+  border: 1px solid black;
+  color: black;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 30px;
+  cursor: pointer;
+  background: #FCE4B4;
+  display: inline-block; 
+}
 
       @media screen and (max-width: 500px) {
         .form .column {

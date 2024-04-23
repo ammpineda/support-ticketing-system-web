@@ -81,7 +81,7 @@
         </div>
         <div class="navbar-buttons">
             <a href="{{route('login')}}">LOGIN</a>
-            <a href="#">REGISTER</a>
+            <a href="{{route('register')}}">REGISTER</a>
         </div>
     </div>
 
