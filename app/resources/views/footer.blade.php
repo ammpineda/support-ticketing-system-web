@@ -20,6 +20,10 @@
             font-size: 20px;
         }
 
+        body{
+            display: flex;
+            flex-direction: column;
+        }
 
 
         .footer {
@@ -28,8 +32,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 30px;
-            border-top: 2px solid #3A0000; /* Border line color */
-            position: fixed;
+            border-top: 2px solid #3A0000; 
             bottom: 0;
             width: 100%;
         }

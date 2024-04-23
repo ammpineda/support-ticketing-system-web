@@ -51,6 +51,7 @@
             border-radius: 5px;
             text-decoration: none;
             margin-left: 10px;
+            border: 1px solid black;
         }
 
         @media (max-width: 768px) {

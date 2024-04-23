@@ -14,6 +14,7 @@
         <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
       
+      
       h1 {
         font-size: 50px;
         color: #333;
@@ -21,7 +22,6 @@
         text-align: left;
       }
       .container{
-        overflow: auto;
         height: 40vh;
         display: flex;
         align-items: center;
@@ -55,7 +55,7 @@
         font-size: 1rem;
         font-weight: 400;
         margin-top: 30px;
-        border: 2px solid black;
+        border: 1px solid black;
         cursor: pointer;
         background: #FCE4B4;
         text-align: center;
@@ -75,7 +75,7 @@
 		flex-direction: column;
 		margin-top: 30px;
         justify-content: space-evenly; 
-        margin-bottom: 30px;
+        margin-bottom: 60px;
 	  }
 	  .posters{
 		margin-top: 30px;
