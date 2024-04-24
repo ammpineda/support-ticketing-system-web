@@ -21,7 +21,15 @@ Route::get('/student-register', function () {
 
 Route::post('/register', 'App\Http\Controllers\RegisterPageController@register')->name('register');
 
+Route::get('/support-ticket-form', function () {
+    return view('support-ticket');
+})->name('support-ticket');
 
+Route::post('/submit-ticket', 'App\Http\Controllers\SubmitTicketPageController@store')->name('submit_ticket');
+
+Route::get('/my-tickets', function () {
+    return view('my-tickets');
+})->name('my-tickets');
 
 Route::post('/clear-sessions', function () {
     Session::flush();

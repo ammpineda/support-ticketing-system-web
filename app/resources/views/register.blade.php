@@ -51,12 +51,12 @@
 .input-box input[type="text"],
 .input-box input[type="email"],
 .input-box input[type="password"] {
-  width: calc(100% - 30px); /* Subtract the padding from the width */
+  width: calc(100% - 30px); 
   height: 50px;
   outline: none;
   font-size: 1rem;
   color: #707070;
-  border: 1px solid #ddd;
+  border: 1px solid black;
   border-radius: 6px;
   padding: 0 15px;
 }
@@ -75,7 +75,7 @@
         font-size: 1rem;
         color: #707070;
         margin-top: 8px;
-        border: 1px solid #ddd;
+        border: 1px solid black;
         border-radius: 6px;
         padding: 0 15px;
       }

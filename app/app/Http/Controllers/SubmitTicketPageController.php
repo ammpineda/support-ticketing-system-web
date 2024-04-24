@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-
-use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use App\Models\Ticket;
 
-class LoginPageController extends Controller
+class SubmitTicketPageController extends Controller
 {
     public function store(Request $request)
     {
@@ -22,10 +21,12 @@ class LoginPageController extends Controller
         Ticket::create([
             'subject' => $request->subject,
             'description' => $request->description,
+            'status' => 'Unopened',
             'student_id' => Session::get('user_id'), // Get student ID from session
+            'staff_id' => 1,
         ]);
 
         // Optionally, you can redirect back with a success message
-        return redirect()->back()->with('success', 'Ticket submitted successfully!');
+        return redirect()->route('my-tickets')->with('success', 'Ticket submitted successfully!');
     }
 }

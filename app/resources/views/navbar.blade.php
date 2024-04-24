@@ -110,6 +110,10 @@
             <a href="{{route('home')}}">HOME</a>
             <a href="#">ABOUT</a>
             <a href="#">EVENTS</a>
+            @if(session('is_student'))
+            <a href="{{route('support-ticket')}}">SUPPORT</a>
+            <a href="">MANAGE</a>
+            @endif
         </div>
         <div class="navbar-buttons">
             @if(session('is_student'))
