@@ -76,6 +76,17 @@
     .send-button:hover {
       background-color: darkorange; 
     }
+
+    .mark-resolved-button {
+  text-align: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: green;
+  color: #f2f2f2;
+  padding: 10px;
+}
+
   </style>
 </head>
 <body>
@@ -110,7 +121,14 @@
       <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
       <input type="text" class="message-input" name="message_content" placeholder="Type your message here..." />
       <button type="submit" class="send-button">Send</button>
+      
     </form>
+  </div>
+  <div class="chat-input">
+  @if(session('is_admin') && !session('is_student'))
+  <button type="submit" class="mark-resolved-button">Mark as Resolved</button>
+    @endif
+    
   </div>
 </div>
 
