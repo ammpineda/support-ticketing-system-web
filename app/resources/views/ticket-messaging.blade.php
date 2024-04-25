@@ -87,21 +87,22 @@
   </div>
   <div class="chat-messages">
     @foreach($messages as $message)
-      @if($message->sent_by == "Admin")
-        <div class="chat-message">
-          <strong>{{ $staff->first_name }} {{ $staff->last_name }}</strong>: {{ $message->message_content }}
-        </div>
-      @elseif($message->sent_by == "Student")
-        <div class="chat-message">
-          <strong>{{ $student->first_name }} {{ $student->last_name }}</strong>: {{ $message->message_content }}
-        </div>
-      @else
-        <div class="chat-message">
-          {{ $message->message_content }}
-        </div>
-      @endif
+        @if($message->sent_by == "Admin")
+            <div class="chat-message">
+                <strong>{{ $staff->first_name }} {{ $staff->last_name }} [{{ $message->created_at->format('Y-m-d H:i:s') }}]</strong>: {{ $message->message_content }} 
+            </div>
+        @elseif($message->sent_by == "Student")
+            <div class="chat-message">
+                <strong>{{ $student->first_name }} {{ $student->last_name }} [{{ $message->created_at->format('Y-m-d H:i:s') }}]</strong>: {{ $message->message_content }} 
+            </div>
+        @else
+            <div class="chat-message">
+                {{ $message->message_content }} - {{ $message->created_at->format('Y-m-d H:i:s') }}
+            </div>
+        @endif
     @endforeach
-  </div>
+</div>
+
 
   <div class="chat-input">
   <form action="{{ route('send.message') }}" method="POST">

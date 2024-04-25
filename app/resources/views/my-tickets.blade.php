@@ -141,7 +141,7 @@
                 if ($status === 'Unopened' || $status === 'Unresolved') {
                     return '#FFA500';
                 } else if ($status === 'In Progress') {
-                    return 'orange';
+                    return 'pink';
                 } else if ($status === 'Resolved') {
                     return 'green';
                 } else {
@@ -157,7 +157,9 @@
         <p class="subtitle">{{ $ticket->subject }}</p>
         <p>{{ Str::limit($ticket->description, 100) }}</p>
         <!-- Button -->
-        <a href="{{ route('ticket.messages', ['ticket_id' => $ticket->id]) }}"><button class="view-button">View</button></a>
+        <a href="{{ $ticket->status === 'Unopened' ? '#' : route('ticket.messages', ['ticket_id' => $ticket->id]) }}">
+        <button class="view-button" {{ $ticket->status === 'Unopened' ? 'disabled' : '' }}>View</button>
+        </a>
         <!-- Status -->
         <div class="status" style="background-color: {{ getStatusColor($ticket->status) }}">{{ $ticket->status }}</div>
       </div>

@@ -114,11 +114,20 @@
             <a href="{{route('support-ticket')}}">SUPPORT</a>
             <a href="{{route('my-tickets')}}">MANAGE</a>
             @endif
+            @if(session('is_admin'))
+            <a href="{{route('admin-tickets')}}">MANAGE</a>
+            @endif
         </div>
         <div class="navbar-buttons">
             @if(session('is_student'))
             <div class="profile-details">
                 <span>{{ session('first_name') }} {{ session('last_name') }}</span>
+                <img class="profile-picture" src="{{ asset('images/default_dp.jpg') }}" alt="Profile Picture">
+                <a href="" id="logout-btn" class="logout-button">LOGOUT</a>
+            </div>
+            @elseif(session('is_admin'))
+            <div class="profile-details">
+                <span>Administrator</span>
                 <img class="profile-picture" src="{{ asset('images/default_dp.jpg') }}" alt="Profile Picture">
                 <a href="" id="logout-btn" class="logout-button">LOGOUT</a>
             </div>
