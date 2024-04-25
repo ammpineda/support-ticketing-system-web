@@ -15,16 +15,16 @@
     }
 
     .chat-container {
-      width: 900px; /* Increased width */
-      height: 600px; /* Increased height */
-      margin: 50px auto; /* Increased margin */
+      width: 900px; 
+      height: 600px; 
+      margin: 50px auto; 
       border: 1px solid #ccc;
       border-radius: 5px;
       overflow: hidden;
     }
 
     .chat-heading {
-      background-color: #EEB388; /* Changed to dark orange */
+      background-color: #EEB388; 
       color: black;
       padding: 15px;
       font-size: 20px;
@@ -66,7 +66,7 @@
       margin-left: 15px;
       border: none;
       border-radius: 20px;
-      background-color: #FCE4B4; /* Changed to orange */
+      background-color: #FCE4B4; 
       color: black;
       font-size: 16px;
       cursor: pointer;
@@ -74,7 +74,7 @@
     }
 
     .send-button:hover {
-      background-color: darkorange; /* Darker shade on hover */
+      background-color: darkorange; 
     }
   </style>
 </head>
@@ -86,7 +86,6 @@
     Chat with Support (Ticket #{{ $ticket->id }})
   </div>
   <div class="chat-messages">
-    <!-- Display messages here -->
     @foreach($messages as $message)
       @if($message->sent_by == "Admin")
         <div class="chat-message">
