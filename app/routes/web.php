@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Session;
 
 use Illuminate\Support\Facades\Route;
 
+
+use App\Http\Controllers\MyTicketsPageController;
+use App\Http\Controllers\TicketMessagingPageController;
+
+
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -27,9 +32,14 @@ Route::get('/support-ticket-form', function () {
 
 Route::post('/submit-ticket', 'App\Http\Controllers\SubmitTicketPageController@store')->name('submit_ticket');
 
-Route::get('/my-tickets', function () {
-    return view('my-tickets');
-})->name('my-tickets');
+
+Route::get('/tickets', [MyTicketsPageController::class, 'showTickets'])->name('my-tickets');
+
+Route::get('/tickets/{ticket_id}/messages', 'App\Http\Controllers\TicketMessagingPageController@showMessages')->name('ticket.messages');
+
+Route::post('/send-message', [TicketMessagingPageController::class, 'sendMessage'])->name('send.message');
+
+
 
 Route::post('/clear-sessions', function () {
     Session::flush();

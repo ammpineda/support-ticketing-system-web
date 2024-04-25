@@ -95,6 +95,7 @@
       font-size: 14px;
       color: #666;
       margin-bottom: 10px;
+      text-decoration: underline;
     }
 
     /* Button styles */
@@ -125,45 +126,47 @@
 <body>
   @include('navbar')
 
+
   <div class="container">
     <h1>Manage Your Tickets</h1>
 
     <div class="callout">
-      <h2><span class="star">&#9733;</span> Important Message</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at ligula et justo porta efficitur vel id purus.</p>
+      <h2><span class="star">&#9733;</span> Ticket Status Updates</h2>
+      <p>Stay informed with real-time updates on ticket statuses. Easily manage and track all your tickets in one place.</p>
     </div>
 
     <div class="grid">
+    @php
+            function getStatusColor($status) {
+                if ($status === 'Unopened' || $status === 'Unresolved') {
+                    return '#FFA500';
+                } else if ($status === 'In Progress') {
+                    return 'orange';
+                } else if ($status === 'Resolved') {
+                    return 'green';
+                } else {
+                    return 'transparent'; // Default color if status doesn't match
+                }
+            }
+        @endphp
+
+    @foreach($tickets as $ticket)
+
       <div class="box">
-        <h3>Title 1</h3>
-        <p class="subtitle">Ticket Subject</p>
-        <p>Description 1</p>
+        <h3>Ticket #{{ $ticket->id }}</h3>
+        <p class="subtitle">{{ $ticket->subject }}</p>
+        <p>{{ Str::limit($ticket->description, 100) }}</p>
         <!-- Button -->
-        <button class="view-button">View</button>
+        <a href="{{ route('ticket.messages', ['ticket_id' => $ticket->id]) }}"><button class="view-button">View</button></a>
         <!-- Status -->
-        <div class="status">Open</div>
+        <div class="status" style="background-color: {{ getStatusColor($ticket->status) }}">{{ $ticket->status }}</div>
       </div>
-      <div class="box">
-        <h3>Title 2</h3>
-        <p class="subtitle">Ticket Subject</p>
-        <p>Description 2</p>
-        <!-- Button -->
-        <button class="view-button">View</button>
-        <!-- Status -->
-        <div class="status">Closed</div>
-      </div>
-      <div class="box">
-        <h3>Title 3</h3>
-        <p class="subtitle">Ticket Subject</p>
-        <p>Description 3</p>
-        <!-- Button -->
-        <button class="view-button">View</button>
-        <!-- Status -->
-        <div class="status">In Progress</div>
-      </div>
+
+    @endforeach  
     </div>
   </div>
 
+  
   @include('footer')
 </body>
 </html>

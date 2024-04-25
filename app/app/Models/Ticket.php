@@ -13,11 +13,11 @@ class Ticket extends Model
 
     public function staff()
     {
-        return $this->belongsTo('App\Staff');
+        return $this->belongsTo('App\Models\Staff');
     }
 
     public function student()
     {
-        return $this->belongsTo('App\Student');
+        return $this->belongsTo('App\Models\Student');
     }
 }

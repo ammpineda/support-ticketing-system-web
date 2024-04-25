@@ -112,7 +112,7 @@
             <a href="#">EVENTS</a>
             @if(session('is_student'))
             <a href="{{route('support-ticket')}}">SUPPORT</a>
-            <a href="">MANAGE</a>
+            <a href="{{route('my-tickets')}}">MANAGE</a>
             @endif
         </div>
         <div class="navbar-buttons">

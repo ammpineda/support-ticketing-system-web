@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Staff extends Model
 {
     use HasFactory;
+
+    protected $table = 'staffs';
+
+
+    protected $fillable = [
+        'email',
+        'password',
+        'first_name',
+        'last_name',
+        'profile_pic_address',
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 }

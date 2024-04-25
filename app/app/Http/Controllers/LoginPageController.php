@@ -6,26 +6,38 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Ticket;
+use App\Models\Student;
 
 class LoginPageController extends Controller
 {
-    public function store(Request $request)
+    public function login(Request $request)
     {
-        // Validate the form data
+        // Validate the login form data
         $request->validate([
-            'subject' => 'required|string',
-            'description' => 'required|string',
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
 
-        // Store the ticket in the database
-        Ticket::create([
-            'subject' => $request->subject,
-            'description' => $request->description,
-            'student_id' => Session::get('user_id'), // Get student ID from session
-        ]);
+        // Attempt to find the user by email
+        $user = Student::where('email', $request->email)->first();
 
-        // Optionally, you can redirect back with a success message
-        return redirect()->back()->with('success', 'Ticket submitted successfully!');
+        if (!$user) {
+            // User not found, redirect back with error message
+            return redirect()->back()->with('error', 'Invalid email or password');
+        }
+
+        // Verify the password
+        if (password_verify($request->password, $user->password)) {
+
+            Session::put('user_id', $user->id);
+            Session::put('is_student', true);
+            Session::put('first_name', $user->first_name);
+            Session::put('last_name', $user->last_name);
+
+            return redirect()->route('home'); // Redirect to dashboard or any other route
+        } else {
+            // Password is incorrect, redirect back with error message
+            return redirect()->back()->with('error', 'Invalid email or password');
+        }
     }
 }
