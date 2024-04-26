@@ -76,6 +76,17 @@
     .send-button:hover {
       background-color: darkorange; 
     }
+
+    .mark-resolved-button {
+  text-align: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: green;
+  color: #f2f2f2;
+  padding: 10px;
+}
+
   </style>
 </head>
 <body>
@@ -87,21 +98,22 @@
   </div>
   <div class="chat-messages">
     @foreach($messages as $message)
-      @if($message->sent_by == "Admin")
-        <div class="chat-message">
-          <strong>{{ $staff->first_name }} {{ $staff->last_name }}</strong>: {{ $message->message_content }}
-        </div>
-      @elseif($message->sent_by == "Student")
-        <div class="chat-message">
-          <strong>{{ $student->first_name }} {{ $student->last_name }}</strong>: {{ $message->message_content }}
-        </div>
-      @else
-        <div class="chat-message">
-          {{ $message->message_content }}
-        </div>
-      @endif
+        @if($message->sent_by == "Admin")
+            <div class="chat-message">
+                <strong>{{ $staff->first_name }} {{ $staff->last_name }} [{{ $message->created_at->format('Y-m-d H:i:s') }}]</strong>: {{ $message->message_content }} 
+            </div>
+        @elseif($message->sent_by == "Student")
+            <div class="chat-message">
+                <strong>{{ $student->first_name }} {{ $student->last_name }} [{{ $message->created_at->format('Y-m-d H:i:s') }}]</strong>: {{ $message->message_content }} 
+            </div>
+        @else
+            <div class="chat-message">
+                {{ $message->message_content }} - {{ $message->created_at->format('Y-m-d H:i:s') }}
+            </div>
+        @endif
     @endforeach
-  </div>
+</div>
+
 
   <div class="chat-input">
   <form action="{{ route('send.message') }}" method="POST">
@@ -109,7 +121,14 @@
       <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
       <input type="text" class="message-input" name="message_content" placeholder="Type your message here..." />
       <button type="submit" class="send-button">Send</button>
+      
     </form>
+  </div>
+  <div class="chat-input">
+  @if(session('is_admin') && !session('is_student'))
+  <button type="submit" class="mark-resolved-button">Mark as Resolved</button>
+    @endif
+    
   </div>
 </div>
 

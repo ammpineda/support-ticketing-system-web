@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminTicketsPageController;
 use Illuminate\Support\Facades\Session;
 
 use Illuminate\Support\Facades\Route;
@@ -17,8 +18,13 @@ Route::get('/student-login', function () {
     return view('login');
 })->name('login-page');
 
-Route::post('/login', 'App\Http\Controllers\LoginPageController@login')->name('login');
+Route::post('/student-login-execute', 'App\Http\Controllers\LoginPageController@login')->name('login');
 
+Route::get('/admin-login', function () {
+    return view('admin-login');
+})->name('admin-login-page');
+
+Route::post('/admin-login-execute', 'App\Http\Controllers\LoginPageController@admin_login')->name('admin-login');
 
 Route::get('/student-register', function () {
     return view('register');
@@ -39,6 +45,9 @@ Route::get('/tickets/{ticket_id}/messages', 'App\Http\Controllers\TicketMessagin
 
 Route::post('/send-message', [TicketMessagingPageController::class, 'sendMessage'])->name('send.message');
 
+Route::get('/admin-tickets', [AdminTicketsPageController::class, 'showTickets'])->name('admin-tickets');
+
+Route::post('/ticket/{id}/accept', 'App\Http\Controllers\AdminTicketsPageController@accept')->name('ticket.accept');
 
 
 Route::post('/clear-sessions', function () {
