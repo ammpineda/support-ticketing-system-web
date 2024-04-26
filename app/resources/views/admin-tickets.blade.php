@@ -103,19 +103,17 @@
         <th class="headings" style="width: 90px;">Subject</th>
         <th class="headings" style="width: 180px;">Description</th>
         <th class="headings" style="width: 100px;">Status</th>
-        <th class="headings" style="width: 120px;">Date Submitted</th>
-        <th class="headings" style="width: 120px">Date Resolved</th>
+        <th class="headings" style="width: 120px;">Date Updated</th>
         <th class="headings" style="width: 100px;">Actions</th>
     </tr>
     @foreach($tickets as $ticket)
-    @if($ticket->status === "In Progress")
+    @if($ticket->status === "In Progress" || $ticket->status === "Resolved")
     <tr>
         <td>{{ $ticket->id }}</td>
         <td>{{ $ticket->subject }}</td>
         <td>{{ Str::limit($ticket->description, 50) }}</td>
         <td>{{ $ticket->status }}</td>
-        <td>{{ $ticket->created_at->format('m-d-y') }}</td>
-        <td>{{ $ticket->resolved_at ?? '-' }}</td>
+        <td>{{ $ticket->updated_at->format('m-d-y') }}</td>
         <td><a href="{{ $ticket->status === 'Unopened' ? '#' : route('ticket.messages', ['ticket_id' => $ticket->id]) }}"><button>VIEW</button></a></td>
     </tr>
     @endif

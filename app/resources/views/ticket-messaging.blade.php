@@ -18,7 +18,7 @@
       width: 900px; 
       height: 600px; 
       margin: 50px auto; 
-      border: 1px solid #ccc;
+      border: 1px solid black;
       border-radius: 5px;
       overflow: hidden;
     }
@@ -78,14 +78,18 @@
     }
 
     .mark-resolved-button {
-  text-align: center;
-  align-items: center;
-  margin-left: auto;
-  margin-right: auto;
+  display: block;
+  margin: 0 auto;
   background-color: green;
   color: #f2f2f2;
   padding: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5); 
+  width: 300px; 
+  margin-left: 300px;
 }
+
 
   </style>
 </head>
@@ -116,18 +120,53 @@
 
 
   <div class="chat-input">
+  @if($ticket->status == 'Resolved')
   <form action="{{ route('send.message') }}" method="POST">
       @csrf
       <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
-      <input type="text" class="message-input" name="message_content" placeholder="Type your message here..." />
+      <input type="text" class="message-input" name="message_content" placeholder="Type your message here..." disabled/>
+      <button type="submit" class="send-button"disabled >Send</button>
+      
+    </form>
+    @elseif($ticket->status == 'In Progress')
+    <form action="{{ route('send.message') }}" method="POST">
+      @csrf
+      <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
+      <input type="text" class="message-input" name="message_content" placeholder="Type your message here..." disabled/>
       <button type="submit" class="send-button">Send</button>
       
     </form>
+  @endif
   </div>
   <div class="chat-input">
-  @if(session('is_admin') && !session('is_student'))
-  <button type="submit" class="mark-resolved-button">Mark as Resolved</button>
-    @endif
+      @if(session('is_admin') && !session('is_student'))
+        <form action="{{ route('update.ticket.status') }}" method="POST">
+          @csrf
+          <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
+          @if($ticket->status == 'Resolved')
+            <button type="button" class="mark-resolved-button" disabled>Ticket Resolved</button>
+          @else
+            <button type="submit" class="mark-resolved-button">Mark as Resolved</button>
+          @endif
+          
+        </form>
+      @elseif(!session('is_admin') && session('is_student'))
+        <form action="{{ route('update.ticket.status') }}" method="POST">
+          @csrf
+          <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
+          @if($ticket->status == 'Resolved')
+            <button type="button" class="mark-resolved-button" disabled>Ticket Resolved</button>
+          @else
+            <button type="submit" class="mark-resolved-button">Mark as Resolved</button>
+          @endif
+      @endif
+    </div>
+  </div>
+
+  <div class="chat-input">
+      
+    </div>
+  </div>
     
   </div>
 </div>

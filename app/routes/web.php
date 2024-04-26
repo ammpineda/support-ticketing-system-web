@@ -45,6 +45,9 @@ Route::get('/tickets/{ticket_id}/messages', 'App\Http\Controllers\TicketMessagin
 
 Route::post('/send-message', [TicketMessagingPageController::class, 'sendMessage'])->name('send.message');
 
+Route::post('/update-ticket-status', [TicketMessagingPageController::class, 'updateTicketStatus'])->name('update.ticket.status');
+
+
 Route::get('/admin-tickets', [AdminTicketsPageController::class, 'showTickets'])->name('admin-tickets');
 
 Route::post('/ticket/{id}/accept', 'App\Http\Controllers\AdminTicketsPageController@accept')->name('ticket.accept');

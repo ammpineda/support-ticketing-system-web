@@ -47,6 +47,23 @@ class TicketMessagingPageController extends Controller
         return redirect()->back()->with('success', 'Message sent successfully.');
     }
 
+    public function updateTicketStatus(Request $request)
+{
+    // Validate the request data
+    $request->validate([
+        'ticket_id' => 'required|exists:tickets,id',
+    ]);
+
+    // Find the ticket
+    $ticket = Ticket::findOrFail($request->ticket_id);
+
+    // Update the ticket status
+    $ticket->update(['status' => 'Resolved']);
+
+    // Optionally, you can return a response or redirect back
+    return redirect()->route('admin-tickets')->with('success', 'Ticket resolved successfully!');
+}
+
     
 
 }
