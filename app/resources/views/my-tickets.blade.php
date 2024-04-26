@@ -60,7 +60,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, 305px); /* Three columns with fixed width */
+      grid-template-columns: repeat(3, 305px); 
       gap: 20px;
       margin-top: 50px;
       margin-bottom: 100px;
@@ -76,7 +76,7 @@
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
-      position: relative; /* Make box position relative for absolute positioning of button */
+      position: relative;
     }
 
     .box h3 {
@@ -98,11 +98,11 @@
       text-decoration: underline;
     }
 
-    /* Button styles */
+    
     .view-button {
-      position: absolute; /* Position button absolutely within the box */
-      bottom: 20px; /* Adjust the distance from the bottom */
-      left: 20px; /* Adjust the distance from the left */
+      position: absolute; 
+      bottom: 20px; 
+      left: 20px; 
       width: 100px;
       border: 1px solid #000;
       background-color: #FCE4B4;
@@ -111,13 +111,12 @@
       cursor: pointer;
     }
 
-    /* Status indicator styles */
     .status {
-      position: absolute; /* Position status indicator absolutely within the box */
-      bottom: 20px; /* Adjust the distance from the bottom */
-      right: 20px; /* Adjust the distance from the right */
+      position: absolute; 
+      bottom: 20px; 
+      right: 20px; 
       padding: 5px 10px;
-      background-color: #90EE90; /* Light green */
+      background-color: #90EE90; 
       color: #333;
       font-size: 14px;
     }
@@ -145,7 +144,7 @@
                 } else if ($status === 'Resolved') {
                     return 'green';
                 } else {
-                    return 'transparent'; // Default color if status doesn't match
+                    return 'transparent'; 
                 }
             }
         @endphp
@@ -158,8 +157,11 @@
         <p>{{ Str::limit($ticket->description, 100) }}</p>
         <!-- Button -->
         <a href="{{ $ticket->status === 'Unopened' ? '#' : route('ticket.messages', ['ticket_id' => $ticket->id]) }}">
-        <button class="view-button" {{ $ticket->status === 'Unopened' ? 'disabled' : '' }}>View</button>
-        </a>
+    <button class="view-button" {{ $ticket->status === 'Unopened' ? 'disabled' : '' }}>
+        {{ $ticket->status === 'Unopened' ? 'Waiting' : 'View' }}
+    </button>
+</a>
+
         <!-- Status -->
         <div class="status" style="background-color: {{ getStatusColor($ticket->status) }}">{{ $ticket->status }}</div>
       </div>

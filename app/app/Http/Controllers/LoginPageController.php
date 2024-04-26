@@ -32,6 +32,7 @@ class LoginPageController extends Controller
 
             Session::put('user_id', $user->id);
             Session::put('is_student', true);
+            Session::put('is_admin', false);
             Session::put('first_name', $user->first_name);
             Session::put('last_name', $user->last_name);
 
@@ -61,6 +62,7 @@ class LoginPageController extends Controller
         // Verify the password
         if (password_verify($request->password, $user->password)) {
 
+            Session::put('is_student', false);
             Session::put('user_id', $user->id);
             Session::put('is_admin', true);
             // Session::put('first_name', $user->first_name);

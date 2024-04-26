@@ -94,7 +94,7 @@
         font-size: 1rem;
         font-weight: 400;
         margin-top: 30px;
-        border: none;
+        border: 1px solid black;
         cursor: pointer;
         background: #FCE4B4;
       }
