@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
     <head>
         <meta charset="utf-8">
@@ -143,7 +139,6 @@
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('logout-btn').addEventListener('click', function(event) {
             event.preventDefault();
-            // Send AJAX request to clear sessions
             fetch('{{ route("clear-sessions") }}', {
                 method: 'POST',
                 headers: {
@@ -153,10 +148,8 @@
             })
             .then(response => {
                 if (response.ok) {
-                    // Sessions cleared successfully, redirect to login page or any other page
                     window.location.href = '{{ route("login-page") }}';
                 } else {
-                    // Handle error case
                     console.error('Failed to clear sessions');
                 }
             })

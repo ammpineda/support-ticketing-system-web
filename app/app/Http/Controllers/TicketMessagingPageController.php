@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Ticket;
-use App\Models\Message; // Import the Message model
+use App\Models\Message;
 use App\Models\Staff;
 use App\Models\Student;
 
@@ -49,18 +49,14 @@ class TicketMessagingPageController extends Controller
 
     public function updateTicketStatus(Request $request)
 {
-    // Validate the request data
     $request->validate([
         'ticket_id' => 'required|exists:tickets,id',
     ]);
 
-    // Find the ticket
     $ticket = Ticket::findOrFail($request->ticket_id);
 
-    // Update the ticket status
     $ticket->update(['status' => 'Resolved']);
 
-    // Optionally, you can return a response or redirect back
     return redirect()->route('admin-tickets')->with('success', 'Ticket resolved successfully!');
 }
 

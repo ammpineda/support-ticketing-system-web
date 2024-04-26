@@ -12,18 +12,16 @@ class SubmitTicketPageController extends Controller
 {
     public function store(Request $request)
     {
-        // Validate the form data
         $request->validate([
             'subject' => 'required|string',
             'description' => 'required|string',
         ]);
 
-        // Store the ticket in the database
         $ticket = Ticket::create([
             'subject' => $request->subject,
             'description' => $request->description,
             'status' => 'Unopened',
-            'student_id' => Session::get('user_id'), // Get student ID from session
+            'student_id' => Session::get('user_id'), 
             'staff_id' => 1,
         ]);
 
@@ -33,7 +31,6 @@ class SubmitTicketPageController extends Controller
             'ticket_id' => $ticket->id,
         ]);
 
-        // Optionally, you can redirect back with a success message
         return redirect()->route('my-tickets')->with('success', 'Ticket submitted successfully!');
     }
 }

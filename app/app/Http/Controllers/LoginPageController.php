@@ -13,21 +13,17 @@ class LoginPageController extends Controller
 {
     public function login(Request $request)
     {
-        // Validate the login form data
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        // Attempt to find the user by email
         $user = Student::where('email', $request->email)->first();
 
         if (!$user) {
-            // User not found, redirect back with error message
             return redirect()->back()->with('error', 'Invalid email or password');
         }
 
-        // Verify the password
         if (password_verify($request->password, $user->password)) {
 
             Session::put('user_id', $user->id);
@@ -36,30 +32,25 @@ class LoginPageController extends Controller
             Session::put('first_name', $user->first_name);
             Session::put('last_name', $user->last_name);
 
-            return redirect()->route('home'); // Redirect to dashboard or any other route
+            return redirect()->route('home'); 
         } else {
-            // Password is incorrect, redirect back with error message
             return redirect()->back()->with('error', 'Invalid email or password');
         }
     }
 
     public function admin_login(Request $request)
     {
-        // Validate the login form data
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        // Attempt to find the user by email
         $user = Staff::where('email', $request->email)->first();
 
         if (!$user) {
-            // User not found, redirect back with error message
             return redirect()->back()->with('error', 'Invalid email or password');
         }
 
-        // Verify the password
         if (password_verify($request->password, $user->password)) {
 
             Session::put('is_student', false);
@@ -68,9 +59,8 @@ class LoginPageController extends Controller
             // Session::put('first_name', $user->first_name);
             // Session::put('last_name', $user->last_name);
 
-            return redirect()->route('home'); // Redirect to dashboard or any other route
+            return redirect()->route('home'); 
         } else {
-            // Password is incorrect, redirect back with error message
             return redirect()->back()->with('error', 'Invalid email or password');
         }
     }
