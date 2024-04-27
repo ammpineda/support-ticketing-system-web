@@ -131,7 +131,7 @@
     <form action="{{ route('send.message') }}" method="POST">
       @csrf
       <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
-      <input type="text" class="message-input" name="message_content" placeholder="Type your message here..." disabled/>
+      <input type="text" class="message-input" name="message_content" placeholder="Type your message here..." />
       <button type="submit" class="send-button">Send</button>
       
     </form>

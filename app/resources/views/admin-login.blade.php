@@ -46,7 +46,7 @@
 .input-box input[type="text"],
 .input-box input[type="email"],
 .input-box input[type="password"] {
-  width: calc(100% - 30px); /* Subtract the padding from the width */
+  width: calc(100% - 30px); 
   height: 50px;
   outline: none;
   font-size: 1rem;
